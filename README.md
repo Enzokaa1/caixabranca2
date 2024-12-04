@@ -12,3 +12,5 @@
 6 SQL Injection: Usar PreparedStatement em vez de concatenar strings.
 
  ![grafo de fluxo](https://github.com/user-attachments/assets/4a9cc7e7-7cab-4cca-b905-9a1bed020baa)
+
+M=E−N+2P=15−14+2(1)=3
