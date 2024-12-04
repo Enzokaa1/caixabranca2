@@ -1,0 +1,59 @@
+package login;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class User {
+
+    // Etapa 2: Chamada do método conectarBD()
+    public Connection conectarBD() {
+        Connection conn = null;
+        try {
+            // Etapa 3: Carregar Driver MySQL
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            String url = "jdbc:mysql://127.0.0.1/test?user=lopes&password=123";
+            
+            // Etapa 4: Conexão com Banco de Dados
+            conn = DriverManager.getConnection(url);
+        } catch (Exception e) {
+            // Etapa 5: Erro na Conexão
+            e.printStackTrace();
+        }
+        // Etapa 6: Retorna Conexão
+        return conn;
+    }
+
+    public String nome = "";
+    public boolean result = false;
+
+    // Etapa 7: Chamada do método verificarUsuario()
+    public boolean verificarUsuario(String login, String senha) {
+        // Etapa 8: Criar SQL Query
+        String sql = "SELECT nome FROM usuarios WHERE login = ? AND senha = ?";
+        
+        // Tentativa de executar a consulta
+        try (Connection conn = conectarBD(); 
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+             
+            // Etapa 9: Preparar Statement
+            ps.setString(1, login);
+            ps.setString(2, senha);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                // Etapa 12: Verificar Resultado
+                if (rs.next()) {
+                    result = true;
+                    nome = rs.getString("nome");
+                    // Etapa 13: Resultado Encontrado
+                }
+            }
+        } catch (Exception e) {
+            // Etapa 10: Erro na Execução SQL
+            e.printStackTrace();
+        }
+        // Etapa 14: Retorna Resultado
+        return result;
+    }
+}
