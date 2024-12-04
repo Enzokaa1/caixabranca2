@@ -10,3 +10,5 @@
 5 Fechamento de Recursos: Garantir fechamento de Connection, Statement e ResultSet.
 
 6 SQL Injection: Usar PreparedStatement em vez de concatenar strings.
+
+ ![grafo de fluxo](https://github.com/user-attachments/assets/4a9cc7e7-7cab-4cca-b905-9a1bed020baa)
